@@ -1,0 +1,17 @@
+﻿@model cv.Models.Entity.TblYeteneklerim
+
+@{
+    ViewBag.Title = "YeniYetenek";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>Yeni Yetenek Ekleme Sayfası</h2>
+<br />
+<form method="post">
+    @Html.Label("Yetenek Açıklaması")
+    @Html.TextBoxFor(x => x.YETENEK, new { @class = "form-control" })<br />
+    @Html.Label("Derece")
+    @Html.TextBoxFor(x => x.ORAN, new { @class = "form-control" })<br />
+    <button class="btn btn-info">Kaydet</button>
+</form>

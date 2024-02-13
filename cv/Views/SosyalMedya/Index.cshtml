@@ -1,0 +1,113 @@
+﻿@using cv.Models.Entity
+@model List<TblSosyalMedya>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{ string renk = "";
+    bool isUserLoggedIn = User.Identity.IsAuthenticated;
+
+}
+
+<!DOCTYPE html>
+<html>
+<body class="hold-transition sidebar-mini">
+    <!-- Main content --><br />
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Sosyal Medya Hesap Listem</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            @if (isUserLoggedIn)
+                            {
+
+
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Yeni Sosyal Medya Hesabı Ekle</button>
+                            }
+                            <br /><br />
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%">ID</th>
+                                        <th style="width: 55%">SOSYAL MEDYA</th>
+                                        <th style="width: 6%">DURUM</th>
+                                        @if (isUserLoggedIn)
+                                        {
+                                            <th style="width: 6%; text-align: center">DÜZENLE</th>
+                                            <th style="width: 5%; text-align:center">SİL</th>
+                                        }
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var x in Model)
+                                    {
+                                        if (x.DURUM == true)
+                                        {
+                                            renk = "success";
+                                        }
+                                        else
+                                        {
+                                            renk = "danger";
+                                        }
+                                        <tr>
+                                            <td>@x.ID</td>
+                                            <td>@x.AD</td>
+                                            <td class="bg-@renk">@x.DURUM</td>
+                                            @if (isUserLoggedIn)
+
+                                            {
+                                                <td>
+                                                    <a href="/SosyalMedya/SayfaGetir/@x.ID" class="btn btn-info btn-sm">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                        Düzenle
+                                                    </a>
+                                                </td>
+
+                                            <td>
+                                                <a href="/SosyalMedya/Sil/@x.ID" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i>
+                                                    Sil
+                                                </a>
+                                            </td>
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    <div class="modal" id="Modal1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Sosyal Medya Ekleme Paneli</h3>
+                </div>
+                <form method="post" action="/SosyalMedya/Ekle">
+                    <div class="modal-body">
+                        <label>Sosyal Medya İşlemi</label>
+                        <input type="text" name="AD" class="form-control" /><br />
+                        <label>Sosyal Medya Linki</label>
+                        <input type="text" name="LINK" class="form-control" /><br />
+                        <label>İkon Değeri</label>
+                        <input type="text" name="ICON" class="form-control" /><br />
+                        <button class="btn btn-info">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

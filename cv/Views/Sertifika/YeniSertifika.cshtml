@@ -1,0 +1,17 @@
+﻿@model cv.Models.Entity.TblSertifikalarim
+
+@{
+    ViewBag.Title = "YeniSertifika";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>Yeni Sertifika Ekleme Sayfası</h2>
+<br />
+<form method="post">
+    @Html.Label("Sertifika Açıklaması")
+    @Html.TextBoxFor(x => x.ACIKLAMA, new { @class = "form-control" })<br />
+    @Html.Label("Tarih")
+    @Html.TextBoxFor(x => x.TARIH, new { @class = "form-control" })<br />
+    <button class="btn btn-primary">Kaydet</button>
+</form>

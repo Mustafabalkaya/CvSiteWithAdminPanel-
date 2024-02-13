@@ -1,0 +1,36 @@
+﻿@using cv.Models.Entity
+@model List<TblHakkimda>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    bool isUserLoggedIn = User.Identity.IsAuthenticated;
+
+}
+
+<br />
+<h2>Hakkımda Düzenleme Sayfası</h2>
+<br />
+<form method="post">
+    @foreach (var x in Model)
+    {
+        <label>Ad</label>
+        <input type="text" name="AD" value="@x.AD" class="form-control" /><br />
+        <label>Soyad</label>
+        <input type="text" name="SOYAD" value="@x.SOYAD" class="form-control" /><br />
+        <label>Adres</label>
+        <input type="text" name="ADRES" value="@x.ADRES" class="form-control" /><br />
+        <label>Telefon</label>
+        <input type="text" name="TELEFON" value="@x.TELEFON" class="form-control" /><br />
+        <label>Mail</label>
+        <input type="text" name="MAIL" value="@x.MAIL" class="form-control" /><br />
+        <label>Resim</label>
+        <input type="text" name="RESİM" value="@x.RESİM" class="form-control" /><br />
+        <label>Açıklama</label>
+        <textarea rows="5" class="form-control" name="ACIKLAMA">@x.ACIKLAMA</textarea><br />
+    }
+
+    @if (isUserLoggedIn)
+    { 
+<button class="btn btn-success">Güncelle</button>}
+</form>

@@ -1,0 +1,55 @@
+﻿@using cv.Models.Entity
+@model List < TblIletisim>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<body class="hold-transition sidebar-mini">
+    <section class="content">
+        <div class="container-fluid">
+            <br />
+            <div class="row">
+                <!-- /.col -->
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header p-2">
+                            İletişim Paneli
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="tab-pane" id="timeline">
+                                <!-- The timeline -->
+                                <div class="timeline timeline-inverse">
+                                    @for (int i = Model.Count - 1; i >= 0; i--)
+                                    {
+                                        var x = Model[i];
+                                        <!-- timeline time label -->
+                                    <div class="time-label">
+                                        <span class="bg-info">
+                                            @(((DateTime)x.TARIH).ToString("dd-MMM-yyyy HH:mm:ss"))
+                                        </span>
+                                    </div>
+                                        <div>
+                                            <i class="fas fa-comments bg-warning"></i>
+                                            <div class="timeline-item">
+                                                <span class="time"><i class="far fa-envelope"></i> @x.MAIL</span>
+                                                <h3 class="timeline-header"><a href="#">@x.ADSOYAD</a> ~ @x.KONU</h3>
+                                                <div class="timeline-body">
+                                                    @x.MESAJ
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

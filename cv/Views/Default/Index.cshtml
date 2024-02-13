@@ -1,0 +1,238 @@
+﻿﻿@using cv.Models.Entity
+@model List<TblHakkimda>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Merriweather', serif;
+            font-weight: bold;
+        }
+
+        .resume-section h2 {
+            font-weight: bold;
+        }
+
+        #cv-indir {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .btn-primary {
+            margin-top: 10px; /* İhtiyaca göre marjı ayarlayın */
+        }
+    </style>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Mustafa Balkaya</title>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico/" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/Template/Content/css/styles.css" rel="stylesheet" />
+
+    <style>
+        .profile-img {
+            max-width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .whatsapp-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #25d366; /* WhatsApp rengi */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .whatsapp-icon img {
+                width: 100%; /* İkonun içerisindeki WhatsApp logosunun boyutunu ayarlayabilirsiniz */
+                border-radius: 50%;
+            }
+
+            .whatsapp-icon:hover {
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+        .contact-text {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+            background-color: #007bff; /* İletişim rengi */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+            .contact-text:hover {
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-wjVuy7aB1Um+UKAs8IL/1DUZLQEPog+VR68DE2dH7IJ9qDJ5QDDF9IC5PaP7kMQ" crossorigin="anonymous">
+    <meta name="google-site-verification" content="YSA3Xq5uqwGZh0yIVpk7v615i4_AiiXjMgzY0S6lbEw" />
+</head>
+<body id="page-top">
+
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav" style="background-color: #880000;">
+
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <span class="d-block d-lg-none">Mustafa Balkaya</span>
+            @foreach (var x in Model)
+            {
+                <img class="profile-img rounded-circle" src="@x.RESİM" alt="" />
+            }
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Hakkımda</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Deneyimler</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Egitim Hayatım</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Yeteneklerim</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Sertifikalarım</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Iletisim</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Page Content-->
+    <br />
+
+    <div class="container-fluid p-0">
+        <!-- Hakkımda -->
+        @foreach (var x in Model)
+        {
+            <section class="resume-section" id="about">
+                <div class="resume-section-content">
+                    <h1 class="mb-0">
+                        <span class="text-danger">@x.AD</span>
+                        @x.SOYAD
+
+                    </h1>
+                    <div class="subheading mb-5">
+                        ADRES: KAHRAMANMRAŞ  <a href="mailto:@x.MAIL"> <br />E POSTA</a> <br />
+                        <a href="tel:+905053997349">@x.TELEFON</a>
+
+                    </div>
+                    @Html.Action("SosyalMedya")
+                    <br /><br />
+
+                    <p class="lead mb-5" style="font-weight: bold; color: #000000;">@x.ACIKLAMA</p>
+
+                </div>
+            </section>
+        }
+
+        <!-- Deneyim -->
+        <section class="resume-section" id="experience">
+            @Html.Action("Deneyim")
+        </section>
+        <hr class="m-0" />
+        <!-- Eğitim -->
+        <section class="resume-section" id="education">
+            @Html.Action("Egitimlerim")
+        </section>
+        <hr class="m-0" />
+        <!-- Yetenekler -->
+        <section class="resume-section" id="skills">
+            @Html.Action("Yeteneklerim")
+        </section>
+        <!-- Sertifikalar -->
+        <section class="resume-section" id="awards">
+            @Html.Action("Sertifikalarim")
+        </section>
+        <hr class="m-0" />
+        <!-- İletişim -->
+        <section class="resume-section" id="contact">
+            @Html.Action("Iletisim")
+        </section>
+    </div>
+
+    <!-- WhatsApp Modal -->
+    <div class="modal fade" id="whatsappModal" tabindex="-1" role="dialog" aria-labelledby="whatsappModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="whatsappModalLabel">Bize Ulaşmak İster Misiniz?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bizimle iletişime geçmek ister misiniz?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="evetBtn">Evet</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hayır</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Click to Chat Button -->
+    <div class="whatsapp-icon" data-toggle="modal" data-target="#whatsappModal">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png" alt="WhatsApp">
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- WhatsApp Click to Chat Button ve Menü Kapatma -->
+    <script>
+        $(document).ready(function () {
+            // Sayfa yüklenmeye başladığında yüklenme simgesini göster
+
+
+            // "Evet" butonuna tıklandığında
+            $('#evetBtn').click(function () {
+                window.location.href = 'https://wa.me/+905053997349?text=Merhaba%20Sizlere%20Web%20Siteniz%20Üzerinden%20Ulaşıyorum%20mustafabalkaya.com.tr';
+            });
+
+            // Menü öğelerine tıklandığında menüyü kapat
+            $('.navbar-nav a').on('click', function () {
+                $('.navbar-collapse').collapse('hide');
+            });
+        });
+    </script>
+
+    <!-- Bootstrap core JS ve diğer kapatma etiketleri -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="/Template/Content/js/scripts.js"></script>
+</body>
+</html>

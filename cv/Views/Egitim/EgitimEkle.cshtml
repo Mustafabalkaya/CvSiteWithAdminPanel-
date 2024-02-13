@@ -1,0 +1,30 @@
+﻿@model cv.Models.Entity.TblEgitimlerim
+
+@{
+    ViewBag.Title = "EgitimEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>Yeni Egitim Ekleme Sayfası</h2>
+<br />
+<form method="post">
+    @Html.Label("Başlık")
+    @Html.TextBoxFor(x => x.BASLIK, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.BASLIK, "", new { @style = "color:red" })
+    <br />
+    @Html.Label("Alt Başlık-1")
+    @Html.TextBoxFor(x => x.ALTBASLIK1, new { @class = "form-control" })
+    <br />
+    @Html.Label("Alt Başlık-2")
+    @Html.TextBoxFor(x => x.ALTBASLIK2, new { @class = "form-control" })
+    <br />
+    @Html.Label("GNO")
+    @Html.TextBoxFor(x => x.GNO, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.GNO, "", new { @style = "color:red" })<br />
+    <br />
+    @Html.Label("TARİH")
+    @Html.TextBoxFor(x => x.TARIH, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+</form>

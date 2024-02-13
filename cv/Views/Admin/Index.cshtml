@@ -1,0 +1,42 @@
+﻿@using cv.Models.Entity
+@model List<TblAdmin>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    bool isUserLoggedIn = User.Identity.IsAuthenticated;
+    int count = 0;
+
+}
+
+<br />
+<h2>Admin İşlemleri</h2>
+<br />
+<table class="table table-bordered">
+    <tr style="background-color:#808080">
+        <th>#</th>
+        <th>Kullanıcı Adı</th>
+        @if (isUserLoggedIn)
+
+        {
+            <th>Düzenle</th>
+            <th>Kaldır</th>
+        }
+    </tr>
+    @foreach (var x in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@x.KULLANICIADI</td>
+            @if (isUserLoggedIn)
+            {
+                <td><a href="/Admin/AdminGetir/@x.ID" class="btn btn-warning">Düzenle</a></td>
+                <td><a href="/Admin/AdminSil/@x.ID" class="btn btn-danger">Sil</a></td>
+            }
+        </tr>
+    }
+</table>
+@if (isUserLoggedIn)
+{
+    <a href="/Admin/AdminEkle/" class="btn btn-primary">Yeni Kullanıcı Ekle</a>}

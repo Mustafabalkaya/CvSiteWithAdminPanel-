@@ -1,0 +1,25 @@
+﻿@using cv.Models.Entity
+@model List<TblHobilerim>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    bool isUserLoggedIn = User.Identity.IsAuthenticated;
+
+}
+
+<br />
+<h2>Hobi Düzenleme Sayfası</h2>
+<br />
+<form method="post">
+    <label>Hobi İsimi</label>
+    <textarea rows="1" class="form-control" name="ACIKLAMA1">@Model.FirstOrDefault().ACIKLAMA1</textarea>
+    <label>Açıklama</label>
+    <textarea rows="5" class="form-control" name="ACIKLAMA2">@Model.FirstOrDefault().ACIKLAMA2</textarea>
+    <br />
+
+    @if (isUserLoggedIn)
+    {
+        <button class="btn btn-success">Güncelle</button>
+    }
+</form>

@@ -1,0 +1,85 @@
+﻿@using cv.Models.Entity
+@model List<TblSertifikalarim>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    bool isUserLoggedIn = User.Identity.IsAuthenticated;
+
+}
+
+@{
+    string spanColor = "";
+    string buttonColor = "";
+}
+<!DOCTYPE html>
+<html>
+<body class="hold-transition sidebar-mini">
+    <section class="content">
+        <br />
+        <div class="container-fluid">
+            <div class="row">
+                <!-- /.col -->
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header p-2">
+                            <h2>Sertifika Listesi</h2>
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="tab-pane" id="timeline">
+                                <!-- The timeline -->
+                                <div class="timeline timeline-inverse">
+                                    <!-- timeline time label -->
+                                    @foreach (var x in Model)
+                                    {
+                                        if (x.ID % 2 == 0)
+                                        {
+                                            buttonColor = "primary";
+                                            spanColor = "primary";
+                                        }
+                                        else
+                                        {
+                                            buttonColor = "danger";
+                                            spanColor = "danger";
+                                        }
+                                        <div class="time-label">
+                                            <a href="/Sertifika/SertifikaGetir/@x.ID" class="btn btn-@buttonColor">
+                                                <span class="bg-@spanColor">
+                                                    @x.TARIH
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <!-- /.timeline-label -->
+                                        <!-- timeline item -->
+                                        <div>
+                                            @*<i class="fas fa-comment bg-primary"></i>*@
+                                            <div class="timeline-item">
+                                                <div class="timeline-body">
+                                                    @x.ACIKLAMA
+                                                </div>
+                                                @*<div class="timeline-footer">
+                                                        <a href="#" class="btn btn-primary btn-sm">Düzenle</a>
+                                                        <a href="#" class="btn btn-danger btn-sm">Sil</a>
+                                                    </div>*@
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                @if (isUserLoggedIn)
+                                {
+
+                                    <a href="/Sertifika/YeniSertifika/" class="btn btn-info">Yeni Sertifika Ekle</a>
+                                }
+                            </div>
+                        </div>
+                        <!-- /.tab-content -->
+                    </div><!-- /.card-body -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+</body>
+</html>
