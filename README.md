@@ -8,7 +8,7 @@ Welcome to the Dynamic CV Project! This project is an interactive and dynamic CV
 - Implemented a responsive and engaging frontend design with HTML, CSS, JavaScript, and Bootstrap technologies.
 - Leveraged the robust capabilities of Microsoft SQL Server as the database backend.
 - Executed seamless database operations through well-structured migration processes.
-
+ 
 ## Getting Started
 
 1. Clone the project repository: `git clone https://github.com/your-username/your-cv-project.git`
